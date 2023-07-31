@@ -63,7 +63,7 @@ const Home = () => {
        >
           {/* add Particles */}
           {/*<Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={links}/>*/}
-          
+
           <Typography ref={nameEl} variant="h4" sx={{textAlign: "center",}} color="tomato">
           </Typography>
           <Typography
