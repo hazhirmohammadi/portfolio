@@ -11,6 +11,9 @@ const SidebarDrawer = () => {
                 variant="temporary"
                 onClose={() => setDrawerOpen(false)}
                 sx={{
+                   "& .MuiDrawer-paper": {
+                      width: 300,
+                   },
                     display: {
                         xs: "block",
                         sm: "block",

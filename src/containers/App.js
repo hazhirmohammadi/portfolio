@@ -27,7 +27,7 @@ function App() {
        >
           <MainLayout>
              <SidebarContainer>
-                <Sidebar/>
+                <Sidebar />
              </SidebarContainer>
              {/*Fab*/}
              <DrawerActionButton/>
