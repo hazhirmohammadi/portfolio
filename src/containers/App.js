@@ -7,7 +7,7 @@ import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
 import React, {useState} from "react";
 import {DrawerActionButton} from "../components/drawer";
-import {Home} from "../pages";
+import {About, Home} from "../pages";
 
 // import Bg02 from "../assets/bg02.jpeg"
 
@@ -38,7 +38,7 @@ function App() {
                 </Page>
                 <Page pageNumber={pageNumber} index={1}>
                    <Typography variant="h5" sx={{textAlign: "center"}}>
-                      About us
+                     <About/>
                    </Typography>
                 </Page>
                 <Page pageNumber={pageNumber} index={2}>
