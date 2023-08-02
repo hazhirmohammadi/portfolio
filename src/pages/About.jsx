@@ -59,7 +59,7 @@ const About = () => {
    const {htmlSkill, cssSkill, jsSkill, reactSkill, nodeSkill, gitSkill} = devSkills;
    return (
        <>
-          <Card sx={{height: "1500px", backgroundColor: "rgb(95,98,117)", overflowY: "inbound"}}>
+          <Card sx={{height: "100vh", backgroundColor: "rgb(95,98,117)", overflowY: "scroll"}}>
              <CardContent>
                 <Grid container sx={{m: 1}}>
                    {/*AVATAR */}
