@@ -1,13 +1,16 @@
 import {useEffect, useState} from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import {Typography, Card, CardContent, Divider, Chip, Avatar} from "@mui/material"
+import {Typography, Card, CardContent, Divider, Chip, Avatar, Box, Tooltip} from "@mui/material"
 import avatar from "../assets/Avatar.jpg"
 import {CodeRounded, StarsRounded} from '@mui/icons-material';
 import DevInfo from "./component/DevInfo";
 import Skill from "./component/Skill";
 import {devSkills} from "../constants/Skills"
+import {devWorkInfo} from "../constants/details";
+import CountUp from "react-countup";
+import {Helmet} from "react-helmet-async";
 
-const About = () => {
+const About = ({helmetTitle}) => {
 
    const [javascript, setJavascript] = useState(0);
    const [html, setHtml] = useState(0);
@@ -52,7 +55,7 @@ const About = () => {
 
       }, 500);
       return () => {
-        clearInterval(timer)
+         clearInterval(timer)
       }
    }, []);
 
@@ -60,6 +63,10 @@ const About = () => {
    return (
        <>
           <Card sx={{height: "100vh", backgroundColor: "rgb(95,98,117)", overflowY: "scroll"}}>
+
+             <Helmet>
+                <title>{helmetTitle}</title>
+             </Helmet>
              <CardContent>
                 <Grid container sx={{m: 1}}>
                    {/*AVATAR */}
@@ -98,13 +105,39 @@ const About = () => {
                                   </Typography>}
                          />
                       </Divider>
+                      <Grid container>
+                         <Grid xs={4} sm={4} md={3} lg={3} sx={{
+                            display: {
+                               "xs": "none",
+                               "sm": "block",
+                               "md": "block"
+                            }
+                         }}>
+                            {devWorkInfo.map((item,index)=>(
+                                <Box key={index} component="div" sx={{width:1,mb:1,mr:2,mt:2}}>
+                                   <Tooltip title={item.tooltipTitle} placement="right">
+                                      <Chip icon={item.icon} label={
+                                         <Typography  variant="body1" color="whitesmoke">
+                                            <CountUp start={0} end={item.total} duration={1}/>
+                                         </Typography>
+                                      } sx={{p:2,backgroundColor:item.color,width:1}}
+                                      ></Chip>
+                                   </Tooltip>
+                                </Box>
+                            ))}
+                         </Grid>
 
-                      {/*DEV INFO*/}
-                      <DevInfo>name & last Name: Hazhir Mohammadi</DevInfo>
-                      <DevInfo>Age: 20</DevInfo>
-                      <DevInfo>City: Bukan</DevInfo>
-                      <DevInfo>Email: hazhir6690@gmail.com</DevInfo>
-                      <DevInfo>Tal: 0905*******</DevInfo>
+                         <Grid xs={12} sm={8} md={9} lg={9}>
+
+                            {/*DEV INFO*/}
+                            <DevInfo>name & last Name: Hazhir Mohammadi</DevInfo>
+                            <DevInfo>Age: 20</DevInfo>
+                            <DevInfo>City: Bukan</DevInfo>
+                            <DevInfo>Email: hazhir6690@gmail.com</DevInfo>
+                            <DevInfo>Tal: 0905*******</DevInfo>
+                         </Grid>
+
+                      </Grid>
                    </Grid>
                 </Grid>
                 <Grid container>

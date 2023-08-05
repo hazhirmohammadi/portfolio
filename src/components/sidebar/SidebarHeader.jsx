@@ -1,6 +1,11 @@
-import {Avatar, Typography} from "@mui/material";
-
+import {Avatar, Box, Typography,IconButton} from "@mui/material";
+import { RandomReveal} from "react-random-reveal";
+import {randomCharacter} from "../../constants/randomCharacter"
+import {useCallback, useState} from "react";
+import {GitHub, Telegram, Instagram,} from "@mui/icons-material";
 const SidebarHeader = () => {
+   const [start,setStart]=useState(false);
+
     return(
         <>
             <Avatar
@@ -20,20 +25,34 @@ const SidebarHeader = () => {
             >
                 Error
             </Avatar>
-            <Typography
-                sx={{textAlign: "center"}}
-                color="whitesmoke"
-                variant="h6"
-            >
-                Hazhir mohammadi
-            </Typography>
-            <Typography
-                sx={{textAlign: "center"}}
-                color="whitesmoke"
 
-            >
-                programmer front end ,and react dev
+            <Typography sx={{textAlign: "center",mt:"3px"}} color="whitesmoke" variant="h6">
+               <RandomReveal onComplete={() => setStart(true)} isPlaying characterSet={randomCharacter} characters=" Hazhir mohammadi" duration={4}/>
             </Typography>
+           {start &&(
+               <Typography sx={{textAlign: "center"}} color="green">
+                  <RandomReveal isPlaying characterSet={randomCharacter} characters=" programmer front end ,and react dev" duration={4}/>
+               </Typography>
+           )}
+
+           <Box component="div" sx={{m:"0 auto",textAlign:"center",}}>
+              <IconButton aria-label="Github">
+                 <a href="https://github.com/hazhirmohammadi" target="_blank" rel="noopener noreferrer">
+                    <GitHub sx={{color:"teal"}}/>
+                 </a>
+              </IconButton>
+              <IconButton aria-label="Telegram">
+                 <a href="#" target="_blank" rel="noopener noreferrer">
+                    <Telegram sx={{color:"#1f4cd0"}}/>
+                 </a>
+              </IconButton>
+              <IconButton aria-label="Instagram">
+                 <a href="#" target="_blank" rel="noopener noreferrer">
+                    <Instagram sx={{color:"#9f276e"}}/>
+                 </a>
+              </IconButton>
+
+           </Box>
         </>
     )
 }

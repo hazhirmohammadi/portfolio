@@ -1,52 +1,49 @@
 import {Box, Typography} from "@mui/material";
-import React, {useCallback, useEffect, useRef} from "react";
-import Particles from "react-particles";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {loadFull} from "tsparticles"
 import Typed from "typed.js";
-import {links} from "../constants/particles"
+import TextTransition, {presets} from "react-text-transition"
+import {Helmet} from "react-helmet-async";
+// import {links} from "../constants/particles"
+// import Particles from "react-particles";
 
-const Home = () => {
+const Home = ({helmetTitle}) => {
+   const [index, setIndex] = useState(0);
    const nameEl = useRef(null);
    const infoEl = useRef(null);
 
    const strings = [
-      "I'm a full stack developer",
-      "I am a programming instructor",
-      "I'm a freelancer",
-      "I am a content creator of the programming world",
+      " full stack developer",
+      " programming instructor",
+      " freelancer",
+      " content creator of the programming world",
    ];
 
    useEffect(() => {
       const typedName = new Typed(nameEl.current, {
-         strings: ["[[Hazhir Mohammadi]]"],
+         strings: ["Hazhir Mohammadi"],
          typeSpeed: 50,
          backSpeed: 20,
          backDelay: 10,
          showCursor: false,
       });
+      const stringsTransition = setInterval(() => {
+         setIndex(index => index + 1);
+      }, 3000);
 
-      const typedInfo = new Typed(infoEl.current, {
-         strings: strings,
-         startDelay: 1300,
-         typeSpeed: 80,
-         backSpeed: 50,
-         backDelay: 50,
-         loop: true,
-         showCursor: false,
-      });
 
       return () => {
          typedName.destroy();
-         typedInfo.destroy();
+         clearInterval(stringsTransition);
       };
    }, []);
-   const particlesInit = useCallback(async (engine) => {
-      await loadFull(engine)
-   }, []);
-
-   const particlesLoaded = useCallback(async (container) => {
-      await console.log(container)
-   }, []);
+   // const particlesInit = useCallback(async (engine) => {
+   //    await loadFull(engine)
+   // }, []);
+   //
+   // const particlesLoaded = useCallback(async (container) => {
+   //    await console.log(container)
+   // }, []);
    return (
        <Box
            sx={{
@@ -61,23 +58,51 @@ const Home = () => {
               alignItems: "center",
            }}
        >
+          <Helmet>
+             <title>{helmetTitle}</title>
+          </Helmet>
           {/* add Particles */}
           {/*<Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={links}/>*/}
+          <Box component="div" sx={{display:"flex"}}>
+             <Typography variant="h3" color="#F93C92">
+                {"{{"}
+             </Typography>
 
-          <Typography ref={nameEl} variant="h4" sx={{textAlign: "center",}} color="tomato">
-          </Typography>
-          <Typography
-              ref={infoEl}
-              variant="h5"
-              sx={{
-                 textAlign: "center", textDecoration: "underline",
-                 textDecorationColor: "#7be114",
-                 backgroundColor: "rgba(21,20,20,0.69)",
-                 borderRadius: "4px"
-              }}
-              color="whitesmoke"
-          >
-          </Typography>
+             <Typography ref={nameEl} variant="h4" sx={{textAlign: "center",}} color="tomato"></Typography>
+
+             <Typography variant="h3" color="#F93C92">
+                {"}}"}
+             </Typography>
+          </Box>
+
+          <Box component="div" sx={{display: "flex"}}>
+             <Typography variant="h5" color="whitesmoke"
+                         sx={{
+                            textAlign: "center",
+                            backgroundColor: "rgba(21,20,20,0.69)",
+                            borderRadius: "4px",
+                            mr: 1
+                         }}>
+                I am a
+             </Typography>
+             <TextTransition springConfig={presets.wobbly}>
+                <Typography
+                    ref={infoEl}
+                    variant="h5"
+                    sx={{
+                       textAlign: "center", textDecoration: "underline",
+                       textDecorationColor: "#7be114",
+                       backgroundColor: "rgba(21,20,20,0.69)",
+                       borderRadius: "4px"
+                    }}
+                    color="whitesmoke"
+                >
+                   {strings[index % strings.length]}
+                </Typography>
+             </TextTransition>
+
+          </Box>
+
        </Box>
    )
 };

@@ -17,6 +17,7 @@ const SidebarTabs = () => {
             variant="scrollable"
             scrollButton="auto"
             allowScrollButtonsMobile
+            indicatorColor="green"
             value={pageNumber}
             onChange={handlePageNumber}
         >
