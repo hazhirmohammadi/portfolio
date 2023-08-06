@@ -7,7 +7,7 @@ import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
 import React, {useEffect, useState} from "react";
 import {DrawerActionButton} from "../components/drawer";
-import {About, Home, Resume} from "../pages";
+import {About, Home, Resume,Courses} from "../pages";
 
 
 // import Bg02 from "../assets/bg02.jpeg"
@@ -46,15 +46,13 @@ function App() {
                    <Home helmetTitle="protfolio| Home 🏠"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={1}>
-                      <About helmetTitle="protfolio|My About 💁"/>
+                      <About helmetTitle="protfolio| My About 💁"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={2}>
-                   <Resume helmetTitle="protfolio|My Resume 📑"/>
+                   <Resume helmetTitle="protfolio| My Resume 📑"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={3}>
-                   <Typography variant="h5" sx={{textAlign: "center"}}>
-                      My project
-                   </Typography>
+                   <Courses helmetTitle="protfolio| My Project 💻"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={4}>
                    <Typography variant="h5" sx={{textAlign: "center"}}>
