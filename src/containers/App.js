@@ -7,46 +7,61 @@ import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
 import React, {useEffect, useState} from "react";
 import {DrawerActionButton} from "../components/drawer";
-import {About, Home, Resume,Courses} from "../pages";
+import {About, Home, Resume, Courses, Comment, Contact} from "../pages";
 
 
 // import Bg02 from "../assets/bg02.jpeg"
 
-
 function App() {
-
    const [pageNumber, setPageNumber] = useState(0);
    const [drawerOpen, setDrawerOpen] = useState(false);
+   const [mode, setMode] = useState();
+
    const theme = useTheme();
    const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+   const prefersDarkMode = useMediaQuery('(prefers-color-scheme:dark');
 
    useEffect(() => {
-      if(isMdUp){
+      //Theme System clint
+      setMode(prefersDarkMode ? "dark" : "light");
+
+   }, []);
+
+   useEffect(() => {
+      if (isMdUp) {
          setDrawerOpen(false);
       }
-   },[isMdUp]);
+   }, [isMdUp]);
+
    const handlePageNumber = (event, newPage) => {
-      console.log(newPage);
       setPageNumber(newPage);
+   };
+
+   const handleThemeChange = () => {
+      setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
    };
 
    return (
        <MainContext.Provider
-           value={{pageNumber, handlePageNumber, drawerOpen, setDrawerOpen}}
+           value={{
+              pageNumber,
+              handlePageNumber,
+              handleThemeChange,
+              drawerOpen,
+              setDrawerOpen,
+           }}
        >
-          <MainLayout>
+          <MainLayout mode={mode}>
              <SidebarContainer>
                 <Sidebar/>
              </SidebarContainer>
-             {/*Fab*/}
              <DrawerActionButton/>
-
              <PagesContainer>
                 <Page pageNumber={pageNumber} index={0}>
                    <Home helmetTitle="protfolio| Home 🏠"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={1}>
-                      <About helmetTitle="protfolio| My About 💁"/>
+                   <About helmetTitle="protfolio| My About 💁"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={2}>
                    <Resume helmetTitle="protfolio| My Resume 📑"/>
@@ -55,14 +70,10 @@ function App() {
                    <Courses helmetTitle="protfolio| My Project 💻"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={4}>
-                   <Typography variant="h5" sx={{textAlign: "center"}}>
-                      people comments
-                   </Typography>
+                   <Comment helmetTitle="protfolio| comments👥"/>
                 </Page>
                 <Page pageNumber={pageNumber} index={5}>
-                   <Typography variant="h5" sx={{textAlign: "center"}}>
-                      Call to me
-                   </Typography>
+                   <Contact helmetTitle="protfolio| contact with me 🗣"/>
                 </Page>
              </PagesContainer>
           </MainLayout>

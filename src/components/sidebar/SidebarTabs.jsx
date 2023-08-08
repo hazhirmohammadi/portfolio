@@ -1,11 +1,12 @@
-import {Tab, Tabs,} from "@mui/material";
-import {teal} from "@mui/material/colors";
+import {Tab, Tabs, useTheme,} from "@mui/material";
+import {indigo, teal} from "@mui/material/colors";
 
 import MainContext from "../../context";
 import {useContext} from "react";
 import {tabsData} from "../../data/tabsData.sidebar";
 
 const SidebarTabs = () => {
+   const theme=useTheme();
    const { pageNumber, handlePageNumber, setDrawerOpen } =
        useContext(MainContext);
 
@@ -28,7 +29,7 @@ const SidebarTabs = () => {
                     icon={tab.icon}
                     iconPosition="start"
                     sx={{
-                       backgroundColor: teal[800],
+                       backgroundColor: theme.palette.mode==="dark"?teal[800]:indigo[400],
                        borderRadius: 3,
                        my: 0.5,
                        mx: 1,

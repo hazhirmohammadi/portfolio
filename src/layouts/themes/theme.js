@@ -1,12 +1,10 @@
-
 import {createTheme} from "@mui/material/styles";
-import {blue, red} from "@mui/material/colors";
 
 //NOTE Create Custom Theme
-export const theme = createTheme({
+export const lightTheme = createTheme({
     direction: "ltr",
     palette:{
-        mode:"dark",
+        mode:"light",
         primary:{
             main:"#8be9fd"
         },
@@ -17,23 +15,19 @@ export const theme = createTheme({
     typography: {
         fontFamily: "sans-serif",
     },
-    components: {
-        MuiButton: {
-            variants: [
-                {
-                    props: { variant: 'dashed' },
-                    style: {
-                        textTransform: 'none',
-                        border: `2px dashed ${blue[500]}`,
-                    },
-                },
-                {
-                    props: { variant: 'dashed', color: 'secondary' },
-                    style: {
-                        border: `4px dashed ${red[500]}`,
-                    },
-                },
-            ],
+});
+export const darkTheme = createTheme({
+    direction: "ltr",
+    palette:{
+        mode:"dark",
+        primary:{
+            main:"#8be9fd"
         },
+        secondary:{
+            main:"#4646cb"
+        }
+    },
+    typography: {
+        fontFamily: "sans-serif",
     },
 });

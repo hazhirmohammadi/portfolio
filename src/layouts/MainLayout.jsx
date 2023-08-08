@@ -1,9 +1,10 @@
 import {ThemeProvider} from "@mui/material/styles";
-import {theme} from "./themes/theme";
+import {lightTheme,darkTheme} from "./themes/theme";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import Grid from "@mui/material/Unstable_Grid2";
 
-const MainLayout = ({children}) => {
+const MainLayout = ({children,mode}) => {
+    const theme= mode === "dark" ? darkTheme: lightTheme;
     return (
         <ThemeProvider theme={theme}>
             <HelmetProvider>
