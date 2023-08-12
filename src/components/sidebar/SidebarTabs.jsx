@@ -3,7 +3,7 @@ import {indigo, teal} from "@mui/material/colors";
 
 import MainContext from "../../context";
 import {useContext} from "react";
-import {tabsData} from "../../data/tabsData.sidebar";
+import {tabsData} from "../../constants/tabsData.sidebar";
 
 const SidebarTabs = () => {
    const theme=useTheme();

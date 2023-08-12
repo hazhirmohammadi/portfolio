@@ -17,7 +17,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import {AccountCircle, Face6Rounded, SubjectRounded, EmailRounded} from "@mui/icons-material";
 import {Helmet} from "react-helmet-async";
 import worldMap from "../assets/map.svg"
-import {contactValidationSchema} from "./Validation/contactValidation";
+import {contactValidationSchema} from "../Validation/contactValidation";
 
 const Contact = ({helmetTitle}) => {
    const [loading, setLoading] = useState(false);

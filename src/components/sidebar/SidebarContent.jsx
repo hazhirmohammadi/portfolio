@@ -1,27 +1,27 @@
-import { Box, Divider} from "@mui/material";
-import {grey, cyan} from "@mui/material/colors";
-import {SidebarTabs,SidebarHeader,SidebarFooter} from "./index";
-const  SidebarContent = () => {
+import {Box, Divider} from "@mui/material";
 
-    return (
-        <Box
-            sx={{
-                justifyContent: "center",
-                textAlign: "center",
-                mt: 2,
-            }}
-        >
+import {SidebarTabs, SidebarFooter, SidebarHeader} from "./index";
 
-                   <SidebarHeader/>
-            <Divider variant="middle" color={cyan[800]} />
+const SidebarContent = () => {
 
-                   <SidebarTabs/>
-            <Divider variant="middle" color={grey[900]} sx={{ mt: 2 }} />
+   return (
+       <Box
+           sx={{
+              justifyContent: "center",
+              textAlign: "center",
+              mt: 2,
+           }}
+       >
+          <SidebarHeader/>
+          <Divider variant="middle"/>
 
-                   <SidebarFooter/>
+          <SidebarTabs/>
+          <Divider variant="middle" sx={{mt: 2}}/>
 
-        </Box>
-    );
+          <SidebarFooter/>
+
+       </Box>
+   );
 };
 
 export default SidebarContent;

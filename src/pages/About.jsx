@@ -1,194 +1,81 @@
-import {useEffect, useState} from "react";
-import Grid from "@mui/material/Unstable_Grid2";
-import {Typography, Card, CardContent, Divider, Chip, Avatar, Box, Tooltip} from "@mui/material"
-import avatar from "../assets/Avatar.jpg"
-import {CodeRounded, StarsRounded} from '@mui/icons-material';
-import DevInfo from "./component/DevInfo";
-import Skill from "./component/Skill";
-import {devSkills} from "../constants/Skills"
-import {devWorkInfo} from "../constants/details";
-import CountUp from "react-countup";
 import {Helmet} from "react-helmet-async";
+import {Card, CardContent} from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import {CodeRounded, SelfImprovementRounded} from "@mui/icons-material";
+import {DevInfo,DevWorkCount,Skills, } from "../components/pages";
+import avatar from "../assets/profile.jpeg";
+import {CustomAvatar, CustomDivider} from "../components/common";
 
 const About = ({helmetTitle}) => {
-
-   const [javascript, setJavascript] = useState(0);
-   const [html, setHtml] = useState(0);
-   const [css, setCss] = useState(0);
-   const [nodejs, setNodejs] = useState(0);
-   const [reactjs, setReactjs] = useState(0);
-   const [git, setGit] = useState(0);
-
-   useEffect(() => {
-      const timer = setInterval(() => {
-
-         setJavascript(oldProgress => {
-            const diff = Math.random() * 10;
-            return Math.min(oldProgress + diff, 58);
-         });
-
-         setHtml(oldProgress => {
-            const diff = Math.random() * 10;
-            console.log(diff);
-            return Math.min(oldProgress + diff, 90);
-         });
-
-         setCss(oldProgress => {
-            const diff = Math.random() * 10;
-            return Math.min(oldProgress + diff, 74);
-         });
-
-         setReactjs(oldProgress => {
-            const diff = Math.random() * 10;
-            return Math.min(oldProgress + diff, 48);
-         });
-
-         setNodejs(oldProgress => {
-            const diff = Math.random() * 10;
-            return Math.min(oldProgress + diff, 10);
-         });
-
-         setGit(oldProgress => {
-            const diff = Math.random() * 10;
-            return Math.min(oldProgress + diff, 17);
-         });
-
-      }, 500);
-      return () => {
-         clearInterval(timer)
-      }
-   }, []);
-
-   const {htmlSkill, cssSkill, jsSkill, reactSkill, nodeSkill, gitSkill} = devSkills;
    return (
-       <>
-          <Card sx={{height: "100vh", backgroundColor: "rgb(95,98,117)", overflowY: "scroll"}}>
+       <Card
+           sx={{
+              height: "100vh",
+              backgroundColor: "whitesmoke",
+              overflowY: "scroll",
+           }}
+       >
+          <Helmet>
+             <title>{helmetTitle}</title>
+          </Helmet>
+          <CardContent>
+             <Grid container sx={{mx: 3}}>
+                <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
+                   <CustomDivider
+                       bColor="primary.main"
+                       cColor="primary"
+                       icon={<CodeRounded/>}
+                       align="left"
+                       text="Full stack developer and programming instructor"
+                   />
 
-             <Helmet>
-                <title>{helmetTitle}</title>
-             </Helmet>
-             <CardContent>
-                <Grid container sx={{m: 1}}>
-                   {/*AVATAR */}
-                   <Grid xs={0} sm={0} md={4} lg={4} xl={4}>
-                      <Avatar
-                          src={avatar}
-                          variant="rounded"
+                   <Grid container>
+                      <Grid
+                          xs={4}
+                          sm={4}
+                          md={3}
+                          lg={3}
                           sx={{
-                             height: 230,
-                             width: 230,
-                             margin: "0 auto",
+                             mt: 3,
                              display: {
-                                xl: "block",
-                                lg: "block",
+                                xs: "none",
+                                sm: "block",
                                 md: "block",
-                                sm: "none",
-                                xs: "none"
-                             }
+                             },
                           }}
-
                       >
-                         H M
-                      </Avatar>
-                   </Grid>
-                   {/*ALERT */}
-                   <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
-                      <Divider textAlign="left" sx={{
-                         "&::before,&::after": {
-                            borderColor: "#4e7bfc"
-                         }
-                      }}>
-                         <Chip color="primary" sx={{p: 3}} icon={<CodeRounded/>}
-                               label={
-                                  <Typography variant="body1" textAlign="center" color="black">
-                                     I'm a full stack developer
-                                  </Typography>}
-                         />
-                      </Divider>
-                      <Grid container>
-                         <Grid xs={4} sm={4} md={3} lg={3} sx={{
-                            display: {
-                               "xs": "none",
-                               "sm": "block",
-                               "md": "block"
-                            }
-                         }}>
-                            {devWorkInfo.map((item,index)=>(
-                                <Box key={index} component="div" sx={{width:1,mb:1,mr:2,mt:2}}>
-                                   <Tooltip title={item.tooltipTitle} placement="right">
-                                      <Chip icon={item.icon} label={
-                                         <Typography  variant="body1" color="whitesmoke">
-                                            <CountUp start={0} end={item.total} duration={1}/>
-                                         </Typography>
-                                      } sx={{p:2,backgroundColor:item.color,width:1}}
-                                      ></Chip>
-                                   </Tooltip>
-                                </Box>
-                            ))}
-                         </Grid>
+                         <DevWorkCount/>
+                      </Grid>
 
-                         <Grid xs={12} sm={8} md={9} lg={9}>
-
-                            {/*DEV INFO*/}
-                            <DevInfo>name & last Name: Hazhir Mohammadi</DevInfo>
-                            <DevInfo>Age: 20</DevInfo>
-                            <DevInfo>City: Bukan</DevInfo>
-                            <DevInfo>Email: hazhir6690@gmail.com</DevInfo>
-                            <DevInfo>Tal: 0905*******</DevInfo>
-                         </Grid>
-
+                      <Grid xs={12} sm={8} md={9} lg={9}>
+                         <DevInfo/>
                       </Grid>
                    </Grid>
                 </Grid>
-                <Grid container>
-                   <Grid sx={{width: 1, mt: "3px"}}>
-                      <Divider textAlign="center" sx={{
-                         "&::before,&::after": {
-                            borderColor: "#4e7bfc"
-                         }
-                      }}>
-                         <Chip color="secondary" sx={{p: 3}} icon={<StarsRounded/>}
-                               label={
-                                  <Typography variant="body1" textAlign="center" color="black">
-                                     My Skills
-                                  </Typography>}
-                         />
-                      </Divider>
-                      <Skill
-                          name={htmlSkill.name}
-                          color={htmlSkill.color}
-                          icon={htmlSkill.icon}
-                          value={html}/>
-                      <Skill
-                          name={cssSkill.name}
-                          color={cssSkill.color}
-                          icon={cssSkill.icon}
-                          value={css}/>
-                      <Skill
-                          name={jsSkill.name}
-                          color={jsSkill.color}
-                          icon={jsSkill.icon}
-                          value={javascript}/>
-                      <Skill
-                          name={reactSkill.name}
-                          color={reactSkill.color}
-                          icon={reactSkill.icon}
-                          value={reactjs}/>
-                      <Skill
-                          name={nodeSkill.name}
-                          color={nodeSkill.color}
-                          icon={nodeSkill.icon}
-                          value={nodejs}/>
-                      <Skill
-                          name={gitSkill.name}
-                          color={gitSkill.color}
-                          icon={gitSkill.icon}
-                          value={git}/>
-                   </Grid>
+                <Grid xs={0} sm={0} md={4} lg={4} xl={4}>
+                   <CustomAvatar
+                       avatar={avatar}
+                       size={250}
+                       fallback="HM"
+                   />
                 </Grid>
-             </CardContent>
-          </Card>
-       </>
-   )
+             </Grid>
+             <Grid container>
+                <Grid sx={{width: 1, mt: 1}}>
+                   <CustomDivider
+                       bColor="secondary.main"
+                       cColor="secondary"
+                       icon={<SelfImprovementRounded/>}
+                       align="center"
+                       text="my skills"
+                   />
+
+                   <Skills/>
+                </Grid>
+             </Grid>
+          </CardContent>
+       </Card>
+   );
 };
-export default About
+
+export default About;

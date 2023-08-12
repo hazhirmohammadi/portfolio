@@ -1,6 +1,5 @@
 import {Box, Typography} from "@mui/material";
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import {loadFull} from "tsparticles"
+import React, { useEffect, useRef, useState} from "react";
 import Typed from "typed.js";
 import TextTransition, {presets} from "react-text-transition"
 import {Helmet} from "react-helmet-async";
@@ -37,13 +36,7 @@ const Home = ({helmetTitle}) => {
          clearInterval(stringsTransition);
       };
    }, []);
-   // const particlesInit = useCallback(async (engine) => {
-   //    await loadFull(engine)
-   // }, []);
-   //
-   // const particlesLoaded = useCallback(async (container) => {
-   //    await console.log(container)
-   // }, []);
+
    return (
        <Box
            sx={{

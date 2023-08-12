@@ -12,8 +12,8 @@ import {
    Slide,
 } from "@mui/material";
 import Slider from "react-slick";
-import { ForumRounded, TryRounded } from "@mui/icons-material";
-import { userComments } from "../constants/details";
+import {ForumRounded} from "@mui/icons-material";
+import {userComments} from "../constants/details";
 
 const Comment = ({ helmetTitle }) => {
    const [loading, setLoading] = useState(false);
@@ -67,7 +67,7 @@ const Comment = ({ helmetTitle }) => {
                     }}
                 >
                    <Chip
-                       icon={<ForumRounded />}
+                       icon={<ForumRounded/>}
                        color="success"
                        label={
                           <Typography

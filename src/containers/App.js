@@ -1,16 +1,13 @@
-import {Typography, useTheme, useMediaQuery} from "@mui/material";
+import {useTheme, useMediaQuery} from "@mui/material";
 import MainLayout from "../layouts/MainLayout";
 import {Sidebar} from "../components/sidebar";
 import PagesContainer from "./PagesContainer";
-import Page from "../pages/component/Page";
+import {Page} from "../components/pages/";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
 import React, {useEffect, useState} from "react";
 import {DrawerActionButton} from "../components/drawer";
 import {About, Home, Resume, Courses, Comment, Contact} from "../pages";
-
-
-// import Bg02 from "../assets/bg02.jpeg"
 
 function App() {
    const [pageNumber, setPageNumber] = useState(0);

@@ -1,18 +1,31 @@
-import {Chip, Divider, Box, Typography, LinearProgress, Badge} from "@mui/material";
+import {
+   Divider,
+   Chip,
+   Box,
+   Typography,
+   LinearProgress,
+   Badge,
+} from "@mui/material";
 
 const Skill = ({icon, color, name, value}) => {
    return (
        <>
-          <Divider textAlign="left" sx={{
-             "&::before,&::after": {
-                borderColor: `${color}.main`
-             }
-          }}>
-             <Chip icon={
-                <Box component="img" src={icon} sx={{height: 20}}/>
-             } color={color} label={name} sx={{color: "#000", p: 2, mb: 1}}/>
+          <Divider
+              textAlign="left"
+              sx={{
+                 "&::before, &::after": {
+                    borderColor: `${color}.main`
+                 },
+              }}>
+             <Chip
+                 icon={
+                    <Box component="img" src={icon} sx={{height: 20}}/>
+                 }
+                 color={color}
+                 label={name}
+                 sx={{color: "#000", p: 2, mb: 1}}
+             />
           </Divider>
-
           <Box sx={{display: "flex", alignItem: "baseline", textAlign: "center"}}>
              <Box sx={{width: "95%", mr: 1, mt: "6px"}}>
                 <LinearProgress
